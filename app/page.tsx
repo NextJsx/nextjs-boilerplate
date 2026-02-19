@@ -1,50 +1,80 @@
+const sidebarItems = [
+  "Home",
+  "Analytics",
+  "Projects",
+  "Messages",
+  "Settings",
+];
+
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-slate-100 to-slate-200 p-6 font-sans dark:from-slate-950 dark:to-slate-900">
-      <main className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-xl dark:border-slate-800 dark:bg-slate-900">
-        <div className="mb-8 space-y-2 text-center">
-          <p className="text-sm font-medium uppercase tracking-[0.3em] text-slate-500">
-            Preview
-          </p>
-          <h1 className="text-3xl font-semibold text-slate-900 dark:text-slate-100">
-            Welcome back
-          </h1>
-          <p className="text-sm text-slate-600 dark:text-slate-400">
-            Sign in to continue to your dashboard.
-          </p>
-        </div>
+    <div className="min-h-screen bg-slate-100 p-4 font-sans text-slate-900 dark:bg-slate-950 dark:text-slate-100 sm:p-6">
+      <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-6xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-slate-800 dark:bg-slate-900 sm:min-h-[calc(100vh-3rem)]">
+        <aside className="hidden w-64 flex-col border-r border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900/70 md:flex">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">
+              Home Preview
+            </p>
+            <h1 className="mt-2 text-2xl font-bold">Dashboard</h1>
+          </div>
 
-        <form className="space-y-5">
-          <label className="block space-y-2">
-            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-              Email
-            </span>
-            <input
-              type="email"
-              placeholder="you@example.com"
-              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-500 focus:ring-2 focus:ring-slate-400/40 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
-            />
-          </label>
+          <nav className="mt-10 space-y-2">
+            {sidebarItems.map((item, index) => (
+              <button
+                key={item}
+                type="button"
+                className={`w-full rounded-lg px-4 py-2 text-left text-sm font-medium transition ${
+                  index === 0
+                    ? "bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900"
+                    : "text-slate-700 hover:bg-slate-200 dark:text-slate-300 dark:hover:bg-slate-800"
+                }`}
+              >
+                {item}
+              </button>
+            ))}
+          </nav>
 
-          <label className="block space-y-2">
-            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-              Password
-            </span>
-            <input
-              type="password"
-              placeholder="••••••••"
-              className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none ring-0 transition focus:border-slate-500 focus:ring-2 focus:ring-slate-400/40 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
-            />
-          </label>
+          <div className="mt-auto rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+            You are viewing a static sidebar preview for the home page.
+          </div>
+        </aside>
 
-          <button
-            type="button"
-            className="w-full rounded-xl bg-slate-900 py-3 text-sm font-semibold text-white transition hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-300"
-          >
-            Sign in
-          </button>
-        </form>
-      </main>
+        <main className="flex flex-1 flex-col p-6 sm:p-8">
+          <header className="flex items-start justify-between gap-4 border-b border-slate-200 pb-6 dark:border-slate-800">
+            <div>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Overview</p>
+              <h2 className="mt-1 text-3xl font-semibold">Welcome back</h2>
+            </div>
+            <button
+              type="button"
+              className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-300"
+            >
+              New Project
+            </button>
+          </header>
+
+          <section className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {["Total Users", "Active Projects", "Open Tasks"].map((metric, index) => (
+              <article
+                key={metric}
+                className="rounded-xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-800/60"
+              >
+                <p className="text-sm text-slate-500 dark:text-slate-400">{metric}</p>
+                <p className="mt-2 text-2xl font-bold">{["12,430", "18", "47"][index]}</p>
+              </article>
+            ))}
+          </section>
+
+          <section className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-800/60">
+            <h3 className="text-lg font-semibold">Recent activity</h3>
+            <ul className="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+              <li>• Mia added a new design brief to Marketing Website.</li>
+              <li>• You closed 3 tasks in Mobile App Sprint.</li>
+              <li>• Team sync scheduled for Friday at 10:00 AM.</li>
+            </ul>
+          </section>
+        </main>
+      </div>
     </div>
   );
 }
